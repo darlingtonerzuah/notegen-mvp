@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteGen - AI Study Notes Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 NoteGen</h1>
+            <p>Generate detailed study notes in seconds</p>
+        </header>
+
+        <main>
+            <form id="noteForm">
+                <div class="form-group">
+                    <label for="topic">Topic Title *</label>
+                    <input 
+                        type="text" 
+                        id="topic" 
+                        name="topic" 
+                        placeholder="e.g., Photosynthesis, Complex Numbers, Database Design"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="level">Education Level *</label>
+                    <select id="level" name="level" required>
+                        <option value="">-- Select Level --</option>
+                        <option value="High School">High School</option>
+                        <option value="Undergraduate">Undergraduate</option>
+                        <option value="Graduate">Graduate</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="program">Program/Subject *</label>
+                    <input 
+                        type="text" 
+                        id="program" 
+                        name="program" 
+                        placeholder="e.g., Computer Science, Biology, Engineering"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn-generate">Generate Notes</button>
+            </form>
+
+            <div id="errorContainer" class="error-message"></div>
+            <div id="loadingSpinner" class="spinner hidden"></div>
+
+            <div id="notesContainer" class="notes-container hidden">
+                <div class="notes-header">
+                    <h2>Your Generated Notes</h2>
+                    <button id="copyBtn" class="btn-action">📋 Copy</button>
+                    <button id="downloadBtn" class="btn-action">⬇️ Download</button>
+                </div>
+                <div id="notesContent" class="notes-content"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>NoteGen © 2026 | Helping UENR students succeed</p>
+        </footer>
+    </div>
+
+    <!-- Ad Space -->
+    <div class="ad-space">
+        <!-- Google AdSense will go here later -->
+        <p style="text-align: center; color: #999; font-size: 12px;">Advertisement</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
