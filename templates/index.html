@@ -10,56 +10,96 @@
     <div class="container">
         <header>
             <h1>📚 NoteGen</h1>
-            <p>Generate detailed study notes in seconds</p>
+            <p>Generate detailed study notes or summarize existing ones in seconds</p>
         </header>
 
         <main>
-            <form id="noteForm">
-                <div class="form-group">
-                    <label for="topic">Topic Title *</label>
-                    <input 
-                        type="text" 
-                        id="topic" 
-                        name="topic" 
-                        placeholder="e.g., Photosynthesis, Complex Numbers, Database Design"
-                        required
-                    >
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="generate">📝 Generate Notes</button>
+                <button class="tab-btn" data-tab="summarize">📤 Summarize Notes</button>
+            </div>
+
+            <!-- Generate Notes Tab -->
+            <div id="generate" class="tab-content active">
+                <form id="noteForm">
+                    <div class="form-group">
+                        <label for="topic">Topic Title *</label>
+                        <input 
+                            type="text" 
+                            id="topic" 
+                            name="topic" 
+                            placeholder="e.g., Photosynthesis, Complex Numbers, Database Design"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="level">Education Level *</label>
+                        <select id="level" name="level" required>
+                            <option value="">-- Select Level --</option>
+                            <option value="High School">High School</option>
+                            <option value="Undergraduate">Undergraduate</option>
+                            <option value="Graduate">Graduate</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="program">Program/Subject *</label>
+                        <input 
+                            type="text" 
+                            id="program" 
+                            name="program" 
+                            placeholder="e.g., Computer Science, Biology, Engineering"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="btn-generate">Generate Notes</button>
+                </form>
+
+                <div id="errorContainer" class="error-message"></div>
+                <div id="loadingSpinner" class="spinner hidden"></div>
+
+                <div id="notesContainer" class="notes-container hidden">
+                    <div class="notes-header">
+                        <h2>Your Generated Notes</h2>
+                        <button id="copyBtn" class="btn-action">📋 Copy</button>
+                        <button id="downloadBtn" class="btn-action">⬇️ Download</button>
+                    </div>
+                    <div id="notesContent" class="notes-content"></div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="level">Education Level *</label>
-                    <select id="level" name="level" required>
-                        <option value="">-- Select Level --</option>
-                        <option value="High School">High School</option>
-                        <option value="Undergraduate">Undergraduate</option>
-                        <option value="Graduate">Graduate</option>
-                    </select>
+            <!-- Summarize Notes Tab -->
+            <div id="summarize" class="tab-content">
+                <form id="summarizeForm">
+                    <div class="form-group">
+                        <label for="fileUpload">Upload Notes (TXT or Image) *</label>
+                        <input 
+                            type="file" 
+                            id="fileUpload" 
+                            name="file"
+                            accept=".txt,.pdf,.png,.jpg,.jpeg,.gif"
+                            required
+                        >
+                        <small>Supported: TXT, PNG, JPG, GIF (PDF coming soon)</small>
+                    </div>
+
+                    <button type="submit" class="btn-generate">Summarize Notes</button>
+                </form>
+
+                <div id="summaryErrorContainer" class="error-message"></div>
+                <div id="summaryLoadingSpinner" class="spinner hidden"></div>
+
+                <div id="summaryContainer" class="notes-container hidden">
+                    <div class="notes-header">
+                        <h2>Summary</h2>
+                        <button id="copySummaryBtn" class="btn-action">📋 Copy</button>
+                        <button id="downloadSummaryBtn" class="btn-action">⬇️ Download</button>
+                    </div>
+                    <div id="summaryContent" class="notes-content"></div>
                 </div>
-
-                <div class="form-group">
-                    <label for="program">Program/Subject *</label>
-                    <input 
-                        type="text" 
-                        id="program" 
-                        name="program" 
-                        placeholder="e.g., Computer Science, Biology, Engineering"
-                        required
-                    >
-                </div>
-
-                <button type="submit" class="btn-generate">Generate Notes</button>
-            </form>
-
-            <div id="errorContainer" class="error-message"></div>
-            <div id="loadingSpinner" class="spinner hidden"></div>
-
-            <div id="notesContainer" class="notes-container hidden">
-                <div class="notes-header">
-                    <h2>Your Generated Notes</h2>
-                    <button id="copyBtn" class="btn-action">📋 Copy</button>
-                    <button id="downloadBtn" class="btn-action">⬇️ Download</button>
-                </div>
-                <div id="notesContent" class="notes-content"></div>
             </div>
         </main>
 
@@ -70,7 +110,6 @@
 
     <!-- Ad Space -->
     <div class="ad-space">
-        <!-- Google AdSense will go here later -->
         <p style="text-align: center; color: #999; font-size: 12px;">Advertisement</p>
     </div>
 
